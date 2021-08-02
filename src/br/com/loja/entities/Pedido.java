@@ -24,6 +24,9 @@ public class Pedido {
 		this.itens = itens;
 	}
 	
+	/**
+	 * Esse tipo de função deve ficar no repositorio
+	 */
 	public void mostrarItens() {
 		for (Item item : itens) {
 			System.out.println("Produto: " + "Nome: " + item.getDescricao()

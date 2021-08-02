@@ -3,6 +3,9 @@ package br.com.loja.util;
 import br.com.loja.entities.Estoque;
 import br.com.loja.servicos.EstoqueService;
 
+/**
+ * não entendi pra que serve o controle, se já tem o repositorio, é repeticao de codigo só
+ */
 public class ControlaEstoque {
 
 	private final EstoqueService estoqueService;

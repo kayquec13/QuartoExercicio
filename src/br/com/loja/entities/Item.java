@@ -8,6 +8,9 @@ public class Item {
 	private int id;
 	private String descricao;
 	private BigDecimal valor;
+	/**
+	 * Quantidade não deve ficar em itens, mas sim no estoque
+	 */
 	private Integer quantidade;
 
 	// TB_CATEGORIA
