@@ -22,12 +22,12 @@ public class Pedido {
 	public void setItens(List<Item> itens) 
 	{
 		this.itens = itens;
-	}
+	}	
 	
 	public void mostrarItens() {
 		for (Item item : itens) {
 			System.out.println("Produto: " + "Nome: " + item.getDescricao()
-			+ ", Quantidade: " + item.getQuantidade() + ", Valor: "
+			+ ", Quantidade: " + item.getQuantidade() + ", Valor: " 
 			+ item.getValor());
 		}
 	}

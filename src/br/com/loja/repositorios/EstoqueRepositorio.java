@@ -7,11 +7,7 @@ import java.util.List;
 import br.com.loja.entities.Categoria;
 import br.com.loja.entities.Estoque;
 import br.com.loja.entities.Item;
-import br.com.loja.entities.Pedido;
-import br.com.loja.entities.StatusItem;
-import br.com.loja.servicos.PedidoService;
-import br.com.loja.servicos.impl.PedidoServiceImpl;
-import br.com.loja.util.ControlaPedido;
+import br.com.loja.enuns.StatusItem;
 
 public class EstoqueRepositorio {
 
@@ -27,30 +23,46 @@ public class EstoqueRepositorio {
 		this.itens.add(new Item(2, "Cloro", new BigDecimal(5), 10, limpeza, StatusItem.PRODUTO_EM_ESTOQUE));
 	}
 
-	public Estoque getEstoqueFromDatabase() {
+	public Estoque buscarEstoque() {
 		return new Estoque(this.itens);
 	}
 
-	public Estoque removeEstoque(Item itemPedido) {
-
-		for (Item item : this.itens) {
-			if (itemPedido.getId() == item.getId()) {
-				if (item.getQuantidade() >= itemPedido.getQuantidade()) {
-					item.setQuantidade(item.getQuantidade() - itemPedido.getQuantidade());
-
-					if (item.getQuantidade() > 0) {
-						item.setStatus(StatusItem.PRODUTO_EM_ESTOQUE);
+	public void removerEstoque(List<Item> itensPedido) {
+		for (Item itemPedido : itensPedido) {
+			for (Item itemEstoque : this.itens) {
+				if (itemPedido.getId() == itemEstoque.getId()) {
+					if (itemPedido.getQuantidade() <= itemEstoque.getQuantidade()) {
+						itemEstoque.setQuantidade(itemEstoque.getQuantidade() - itemPedido.getQuantidade());
+						controlaStatus();
 					} else {
-						item.setStatus(StatusItem.SEM_ESTOQUE_DO_PRODUTO);
+						controlaStatus();
 					}
-				} else {
-					System.out.println("\n A quantidade do pedido é maior" + " que a que temos em estoque do produto: "
-							+ item.getDescricao());
 				}
 			}
 		}
-
-		return ;
 	}
 
+	public void controlaStatus() {
+		for (Item item : this.itens) {
+			if (item.getQuantidade() > 0) {
+				item.setStatus(StatusItem.PRODUTO_EM_ESTOQUE);
+			} else {
+				item.setStatus(StatusItem.SEM_ESTOQUE_DO_PRODUTO);
+			}
+		}
+	}
+
+	public BigDecimal calculaTotal() {
+		BigDecimal valor = new BigDecimal(0);
+		for (Item item : this.itens) {
+
+			BigDecimal quantidade = new BigDecimal(item.getQuantidade());
+			BigDecimal valorProduto = item.getValor();
+			BigDecimal soma = new BigDecimal(0);
+
+			soma = quantidade.multiply(valorProduto);
+			valor = valor.add(soma);
+		}
+		return valor;
+	}
 }

@@ -2,13 +2,15 @@ package br.com.loja.entities;
 
 import java.math.BigDecimal;
 
+import br.com.loja.enuns.StatusItem;
+
 //tb_item
 public class Item {
 
 	private int id;
 	private String descricao;
-	private BigDecimal valor;
 	private Integer quantidade;
+	private BigDecimal valor;
 
 	// TB_CATEGORIA
 	private Categoria categoria;
@@ -16,17 +18,16 @@ public class Item {
 
 	public Item() {
 	}
-	
-	public Item(int id, String descricao, BigDecimal valor, Integer quantidade){
+
+	public Item(int id, String descricao, BigDecimal valor) {
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
-		this.quantidade = quantidade;
 	}
 
-	public Item(int id, String descricao, BigDecimal valor, Integer quantidade, 
-			Categoria categoria,StatusItem status) {
-		
+	public Item(int id, String descricao, BigDecimal valor, Integer quantidade, Categoria categoria,
+			StatusItem status) {
+
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
@@ -64,14 +65,6 @@ public class Item {
 		this.valor = valor;
 	}
 
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -88,9 +81,18 @@ public class Item {
 		this.status = status;
 	}
 
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
 	@Override
 	public String toString() {
-		return "Nome: " + descricao + " Quantidade: " + quantidade + " Valor: " + valor + " Status em estoque: "
+		return "Nome: " + descricao + " Valor: " + valor + " , Quantidade:" 
+				+ quantidade + " , Status em estoque: "
 				+ status;
 	}
 }

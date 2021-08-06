@@ -1,4 +1,4 @@
-package br.com.loja.entities;
+package br.com.loja.enuns;
 
 public enum StatusItem {
 	PRODUTO_EM_ESTOQUE,

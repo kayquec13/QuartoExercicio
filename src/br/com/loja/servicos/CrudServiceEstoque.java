@@ -2,8 +2,11 @@ package br.com.loja.servicos;
 
 import br.com.loja.entities.Estoque;
 
-public interface EstoqueService {
-	
+public interface CrudServiceEstoque {
+
 	Estoque buscarEstoque();
-	Estoque removeEstoque();
+
+	void removeEstoque();
+
+	void calculaEstoque();
 }

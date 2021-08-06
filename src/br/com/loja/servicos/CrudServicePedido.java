@@ -2,7 +2,9 @@ package br.com.loja.servicos;
 
 import br.com.loja.entities.Pedido;
 
-public interface PedidoService {
+public interface CrudServicePedido {
 
 	Pedido buscarPedido();
+
+	void calculaPedido();
 }
