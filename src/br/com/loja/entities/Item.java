@@ -7,7 +7,7 @@ import br.com.loja.enuns.StatusItem;
 //tb_item
 public class Item {
 
-	private int id;
+	private Integer id;
 	private String descricao;
 	private Integer quantidade;
 	private BigDecimal valor;
@@ -19,13 +19,13 @@ public class Item {
 	public Item() {
 	}
 
-	public Item(int id, String descricao, BigDecimal valor) {
+	public Item(Integer id, String descricao, BigDecimal valor) {
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
 	}
 
-	public Item(int id, String descricao, BigDecimal valor, Integer quantidade, Categoria categoria,
+	public Item(Integer id, String descricao, BigDecimal valor, Integer quantidade, Categoria categoria,
 			StatusItem status) {
 
 		this.id = id;
@@ -41,7 +41,7 @@ public class Item {
 		this.valor = bigDecimal;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -94,5 +94,9 @@ public class Item {
 		return "Nome: " + descricao + " Valor: " + valor + " , Quantidade:" 
 				+ quantidade + " , Status em estoque: "
 				+ status;
+	}
+	
+	public BigDecimal valorTotal() {
+		return this.valor.multiply(new BigDecimal(this.quantidade));
 	}
 }

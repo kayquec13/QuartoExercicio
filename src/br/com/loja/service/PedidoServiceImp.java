@@ -1,8 +1,8 @@
-package br.com.loja.controller;
+package br.com.loja.service;
 
 import br.com.loja.entities.Pedido;
+import br.com.loja.interfac.CrudServicePedido;
 import br.com.loja.repositorios.PedidoRepositorio;
-import br.com.loja.servicos.CrudServicePedido;
 
 public class PedidoServiceImp implements CrudServicePedido {
 

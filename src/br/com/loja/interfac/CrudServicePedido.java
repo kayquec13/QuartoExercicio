@@ -1,4 +1,4 @@
-package br.com.loja.servicos;
+package br.com.loja.interfac;
 
 import br.com.loja.entities.Pedido;
 

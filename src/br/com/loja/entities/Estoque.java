@@ -27,4 +27,10 @@ public class Estoque {
 		}
 	}
 	
+	public void addItem(Item item) {
+		if(this.itens != null) {
+			this.itens.add(item);
+		}
+	}
+	
 }
