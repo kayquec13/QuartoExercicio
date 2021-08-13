@@ -29,6 +29,11 @@ public class EstoqueServiceImp implements CrudServiceEstoque {
 		estoque.mostrarItens();
 	}
 
+	//preciso encontrar uma forma de remover o item por id
+	public void atualizaItemImpl(int id, Integer quantidade) {
+		estoqueRepositorio.atualizaLista(id, quantidade);
+	}
+
 	@Override
 	public Estoque buscarEstoque() {
 		return estoqueRepositorio.buscarEstoque();
@@ -47,7 +52,7 @@ public class EstoqueServiceImp implements CrudServiceEstoque {
 
 	@Override
 	public void salvar(Item item) {
-		this.estoqueRepositorio.salvar(item);					
+		this.estoqueRepositorio.salvar(item);
 	}
 
 	@Override
@@ -59,7 +64,7 @@ public class EstoqueServiceImp implements CrudServiceEstoque {
 	@Override
 	public Item buscarItemPorId(int id) {
 		for (Item item : buscarItemsNoEstoque(null)) {
-			if(item.getId() == id) {
+			if (item.getId() == id) {
 				return item;
 			}
 		}

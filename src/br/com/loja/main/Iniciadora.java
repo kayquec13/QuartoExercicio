@@ -48,4 +48,8 @@ public class Iniciadora {
 	public void consultar(String nomeItem) {
 		this.estoqueControler.consultar(nomeItem);
 	}
+	
+	public void remover(int id, Integer quantidade) {
+		this.estoqueControler.RemocaoItemPorId(id, quantidade);
+	}
 }

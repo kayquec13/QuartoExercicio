@@ -27,6 +27,14 @@ public class EstoqueRepositorio {
 		return new Estoque(this.itens);
 	}
 
+	public void atualizaLista(int id, Integer quantidade) {
+		for (Item item : this.itens) {
+			if(item.getId() == id) {
+				item.setQuantidade(item.getQuantidade() - quantidade);
+			}
+		}
+	}
+
 	public void removerEstoque(List<Item> itensPedido) {
 		for (Item itemPedido : itensPedido) {
 			for (Item itemEstoque : this.itens) {
@@ -65,58 +73,56 @@ public class EstoqueRepositorio {
 		}
 		return valor;
 	}
-	
-    public List<Item> buscarItensDoEstoque(String mouse) {
-        List<Item> itensRetornar = new ArrayList<>();
-        if (mouse != null) {
-            for (Item iten : buscarEstoque().getItens()) {
-                if (iten.getDescricao().equals(mouse)) {
-                    itensRetornar.add(iten);
-                }
-            }
-        } else {
-            itensRetornar = buscarEstoque().getItens();
-        }
-        return itensRetornar;
-    }
-	
-    public void salvar(Item item) {
-        if (item.getId() != null) {
-            Item itemPersist = buscarPorId(item.getId());
-            itemPersist.setQuantidade(item.getQuantidade());
-            itemPersist.setDescricao(item.getDescricao());
-            itemPersist.setStatus(item.getStatus());
-            itemPersist.setCategoria(item.getCategoria());
-            itemPersist.setValor(item.getValor());
-        } else {
-            item.setId(proximoIDDoItem());
-            adicionaItemEstoque(item);
-        }
-    }
 
-    private void adicionaItemEstoque(Item item) {
+	public List<Item> buscarItensDoEstoque(String mouse) {
+		List<Item> itensRetornar = new ArrayList<>();
+		if (mouse != null) {
+			for (Item iten : buscarEstoque().getItens()) {
+				if (iten.getDescricao().equals(mouse)) {
+					itensRetornar.add(iten);
+				}
+			}
+		} else {
+			itensRetornar = buscarEstoque().getItens();
+		}
+		return itensRetornar;
+	}
+
+	public void salvar(Item item) {
+		if (item.getId() != null) {
+			Item itemPersist = buscarPorId(item.getId());
+			itemPersist.setQuantidade(item.getQuantidade());
+			itemPersist.setDescricao(item.getDescricao());
+			itemPersist.setStatus(item.getStatus());
+			itemPersist.setCategoria(item.getCategoria());
+			itemPersist.setValor(item.getValor());
+		} else {
+			item.setId(proximoIDDoItem());
+			adicionaItemEstoque(item);
+		}
+	}
+
+	private void adicionaItemEstoque(Item item) {
 		buscarEstoque().addItem(item);
-    }
+	}
 
-    private Integer proximoIDDoItem() {
-        final List<Item> itens = buscarEstoque().getItens();
-        if(itens == null || itens.isEmpty()) {
-            return 1;
-        }
-        final int size = itens.size();
-        final Item item = itens.get(size-1);
-        return item.getId()+1;
-    }
+	private Integer proximoIDDoItem() {
+		final List<Item> itens = buscarEstoque().getItens();
+		if (itens == null || itens.isEmpty()) {
+			return 1;
+		}
+		final int size = itens.size();
+		final Item item = itens.get(size - 1);
+		return item.getId() + 1;
+	}
 
-    public Item buscarPorId(Integer id) {
-        for (Item item : buscarEstoque().getItens()) {
-            if (item.getId().equals(id)) {
-                return item;
-            }
-        }
-        return null;
-    }
-      
-
+	public Item buscarPorId(Integer id) {
+		for (Item item : buscarEstoque().getItens()) {
+			if (item.getId().equals(id)) {
+				return item;
+			}
+		}
+		return null;
+	}
 
 }

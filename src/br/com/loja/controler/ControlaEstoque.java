@@ -40,6 +40,10 @@ public class ControlaEstoque {
         }
         return "consultar";
     }
+    
+	public void RemocaoItemPorId(int id, Integer quantidade ) {				
+		estoqueService.atualizaItemImpl(id, quantidade);		 		 
+	}
 
 	public void editarItem(int id) {
 		this.itemModificado = this.estoqueService.buscarItemPorId(id);
